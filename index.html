@@ -3,292 +3,591 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>codexXgithubXwebsite | 公開網頁建置教學簡報</title>
+  <title>Rich Cherie | codexXgithubXwebsite</title>
   <style>
     :root {
-      --bg: #f8f4ef;
-      --bg-alt: #e9dfd2;
+      --bg: #fbf7f2;
+      --bg-soft: #f3e7e2;
+      --panel: rgba(255, 252, 249, 0.86);
+      --panel-strong: rgba(255, 248, 245, 0.95);
       --pink: #d8b7b3;
-      --rose: #c89c9a;
-      --text: #4b403d;
-      --muted: #7a6b67;
-      --white: #fffdfb;
-      --shadow: 0 18px 40px rgba(75, 64, 61, 0.08);
-      --radius: 28px;
+      --pink-deep: #c69495;
+      --mauve: #b98f8d;
+      --text: #433735;
+      --muted: #786665;
+      --gold: #b7935f;
+      --line: rgba(198, 148, 149, 0.22);
+      --shadow: 0 24px 60px rgba(67, 55, 53, 0.09);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-sm: 16px;
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: "Noto Sans TC", "PingFang TC", sans-serif;
-      background: linear-gradient(180deg, var(--bg), #f4ede6);
       color: var(--text);
-      line-height: 1.65;
+      background:
+        radial-gradient(circle at top right, rgba(216,183,179,0.28), transparent 30%),
+        radial-gradient(circle at left 20% bottom 10%, rgba(243,231,226,0.88), transparent 28%),
+        linear-gradient(180deg, #fffaf6 0%, var(--bg) 42%, #f8f0ea 100%);
+      line-height: 1.7;
     }
-    .deck {
-      width: min(1200px, calc(100vw - 48px));
-      margin: 32px auto 80px;
+    .site-shell {
+      width: min(1240px, calc(100vw - 32px));
+      margin: 20px auto 80px;
     }
-    .hero {
-      text-align: center;
-      padding: 48px 24px 24px;
+    .site-topbar {
+      position: sticky;
+      top: 12px;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(255, 250, 246, 0.72);
+      border: 1px solid rgba(198, 148, 149, 0.18);
+      border-radius: 999px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 16px 40px rgba(67,55,53,0.06);
     }
-    .hero h1 {
-      font-size: clamp(2.4rem, 4vw, 4.4rem);
-      margin: 0;
-      letter-spacing: 0.04em;
+    .brand-mini {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
     }
-    .hero p {
-      color: var(--muted);
+    .brand-pill {
+      font-size: 0.78rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .brand-name {
+      font-family: "Times New Roman", serif;
       font-size: 1.1rem;
-      margin-top: 12px;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
     }
-    .slide {
-      min-height: 86vh;
-      background: rgba(255, 253, 251, 0.82);
-      border: 1px solid rgba(200, 156, 154, 0.18);
-      border-radius: 36px;
-      box-shadow: var(--shadow);
-      margin: 28px 0;
-      padding: 54px 56px;
+    .brand-note {
+      color: var(--muted);
+      font-size: 0.92rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .top-link {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.92rem;
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: .2s ease;
+    }
+    .top-link:hover { background: rgba(216,183,179,.16); }
+
+    .hero {
       position: relative;
       overflow: hidden;
+      background: linear-gradient(140deg, rgba(255,252,249,.92), rgba(243,231,226,.84));
+      border: 1px solid var(--line);
+      border-radius: 42px;
+      padding: 56px 54px;
+      margin-top: 22px;
+      box-shadow: var(--shadow);
     }
-    .slide.alt { background: linear-gradient(135deg, rgba(233,223,210,.95), rgba(248,244,239,.95)); }
-    .slide.dark {
-      background: linear-gradient(135deg, #4b403d, #655652);
-      color: var(--white);
-    }
-    .slide.dark .eyebrow,
-    .slide.dark .muted,
-    .slide.dark .step,
-    .slide.dark .small { color: rgba(255,253,251,.8); }
-    .blob {
+    .hero::before,
+    .hero::after {
+      content: "";
       position: absolute;
       border-radius: 999px;
-      background: rgba(216, 183, 179, 0.32);
-      filter: blur(2px);
+      background: rgba(216,183,179,0.22);
+      filter: blur(4px);
     }
-    .blob.a { width: 260px; height: 260px; right: -70px; top: -70px; }
-    .blob.b { width: 220px; height: 220px; left: -80px; bottom: -80px; background: rgba(200,156,154,.18); }
-    .eyebrow {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--muted);
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-    h2 {
-      font-size: clamp(2rem, 3vw, 3rem);
-      margin: 0 0 18px;
-      line-height: 1.2;
-    }
-    h3 {
-      margin: 0 0 10px;
-      font-size: 1.15rem;
-    }
-    .muted, .small { color: var(--muted); }
-    .lead { font-size: 1.2rem; max-width: 860px; }
-    .grid-2, .grid-3, .grid-4 {
+    .hero::before { width: 320px; height: 320px; right: -120px; top: -120px; }
+    .hero::after { width: 240px; height: 240px; left: -80px; bottom: -90px; }
+    .hero-grid {
+      position: relative;
       display: grid;
-      gap: 18px;
-    }
-    .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
-    .grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
-    .card {
-      background: rgba(255,255,255,.7);
-      border: 1px solid rgba(200,156,154,.18);
-      border-radius: var(--radius);
-      padding: 22px 24px;
-      box-shadow: 0 10px 24px rgba(75,64,61,.05);
-    }
-    .card.pink { background: rgba(216,183,179,.22); }
-    .tag {
-      display: inline-block;
-      background: rgba(216,183,179,.38);
-      color: var(--text);
-      border-radius: 999px;
-      padding: 6px 12px;
-      font-size: 0.86rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0,1fr));
-      gap: 16px;
-      margin-top: 28px;
-    }
-    .step {
-      background: rgba(216,183,179,.35);
-      border-radius: 26px;
-      padding: 18px;
-      text-align: center;
-      font-weight: 700;
-    }
-    .code {
-      background: rgba(255,253,251,.94);
-      color: var(--text);
-      padding: 28px;
-      border-radius: 28px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      white-space: pre-wrap;
-      font-size: 0.96rem;
-      overflow-x: auto;
-    }
-    .checklist li, .bullet li { margin: 8px 0; }
-    .two-col {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1.2fr .8fr;
       gap: 28px;
       align-items: center;
     }
-    .mock {
-      border: 2px dashed rgba(200,156,154,.7);
+    .banner-line {
+      font-family: "Times New Roman", serif;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      margin-bottom: 18px;
+      font-size: 0.92rem;
+    }
+    .hero h1 {
+      font-family: "Times New Roman", serif;
+      font-size: clamp(2.6rem, 5vw, 5rem);
+      line-height: 1.04;
+      margin: 0;
+      letter-spacing: 0.04em;
+    }
+    .hero-subtitle {
+      margin-top: 22px;
+      font-size: 1.18rem;
+      max-width: 720px;
+      color: var(--muted);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+    .btn.primary {
+      background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+      color: white;
+      box-shadow: 0 14px 30px rgba(198,148,149,.26);
+    }
+    .btn.ghost {
+      background: rgba(255,255,255,.6);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+    .hero-card {
+      background: rgba(255,255,255,.66);
+      border: 1px solid rgba(198,148,149,.16);
       border-radius: 28px;
       padding: 24px;
+      box-shadow: 0 14px 34px rgba(67,55,53,.05);
+    }
+    .hero-card h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      color: var(--pink-deep);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .hero-card p { margin: 0; color: var(--muted); }
+
+    .section-title-wrap {
+      margin: 44px 0 18px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .section-kicker {
+      color: var(--gold);
+      font-size: 0.82rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    h2 {
+      margin: 0;
+      font-family: "Times New Roman", serif;
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      line-height: 1.12;
+      letter-spacing: 0.03em;
+    }
+    .section-desc {
+      margin: 0;
+      color: var(--muted);
+      max-width: 560px;
+      font-size: 1rem;
+    }
+
+    .slide {
+      position: relative;
+      overflow: hidden;
+      min-height: 82vh;
+      margin: 22px 0;
+      border-radius: 38px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding: 46px 44px;
+    }
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255,255,255,.16), transparent 30%);
+    }
+    .slide.alt {
+      background: linear-gradient(145deg, rgba(255,250,246,.95), rgba(243,231,226,.88));
+    }
+    .slide.dark {
+      background: linear-gradient(135deg, #4a3b39 0%, #6a5554 100%);
+      color: #fffaf6;
+    }
+    .slide.dark p,
+    .slide.dark li,
+    .slide.dark .muted,
+    .slide.dark .small,
+    .slide.dark .meta,
+    .slide.dark .card p { color: rgba(255,250,246,.82); }
+    .slide.dark .card,
+    .slide.dark .step,
+    .slide.dark .mock,
+    .slide.dark .quote-box {
+      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.14);
+      color: #fffaf6;
+    }
+    .slide.dark .tag,
+    .slide.dark .number-badge { background: rgba(255,255,255,.16); color: #fffaf6; }
+
+    .meta {
+      position: relative;
+      z-index: 1;
+      font-size: 0.84rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+    .headline {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 16px;
+      font-family: "Times New Roman", serif;
+      font-size: clamp(2rem, 3vw, 3.25rem);
+      line-height: 1.15;
+      letter-spacing: 0.03em;
+    }
+    .lead, .muted, .small { position: relative; z-index: 1; }
+    .lead { font-size: 1.12rem; margin: 0 0 18px; max-width: 860px; color: var(--muted); }
+    .muted { color: var(--muted); }
+    .small { font-size: .94rem; color: var(--muted); }
+
+    .grid-2, .grid-3, .grid-4, .grid-5 {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 18px;
+    }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .grid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .two-col {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .card {
       background: rgba(255,255,255,.58);
-      min-height: 280px;
+      border: 1px solid rgba(198,148,149,.16);
+      border-radius: var(--radius-lg);
+      padding: 22px 22px 20px;
+      box-shadow: 0 12px 26px rgba(67,55,53,.04);
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.08rem;
+    }
+    .card p, .card li { margin: 0; color: var(--muted); }
+    .card ul { padding-left: 18px; margin: 0; }
+    .card.accent {
+      background: linear-gradient(145deg, rgba(216,183,179,.24), rgba(255,255,255,.58));
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(216,183,179,.34);
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .number-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(198,148,149,.22);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .steps {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0,1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .step {
+      border-radius: 26px;
+      padding: 20px 14px;
+      text-align: center;
+      background: rgba(216,183,179,.24);
+      font-weight: 700;
+    }
+    .step span { display: block; font-size: .84rem; color: var(--muted); margin-top: 6px; font-weight: 500; }
+    .checklist, .bullet {
+      padding-left: 18px;
+      margin: 0;
+      color: var(--muted);
+    }
+    .checklist li, .bullet li { margin: 8px 0; }
+    .mock {
+      background: rgba(255,255,255,.44);
+      border: 1.5px dashed rgba(198,148,149,.55);
+      border-radius: 28px;
+      padding: 24px;
+      min-height: 260px;
+    }
+    .quote-box {
+      background: rgba(255,255,255,.52);
+      border: 1px solid rgba(198,148,149,.16);
+      border-radius: 26px;
+      padding: 22px 24px;
+      font-size: 1.06rem;
     }
     .url-box {
-      background: rgba(255,255,255,.8);
-      border: 1.5px solid rgba(200,156,154,.45);
-      border-radius: 24px;
-      padding: 22px 26px;
-      font-size: clamp(1.2rem, 2vw, 1.8rem);
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,.78);
+      border: 1.5px solid rgba(198,148,149,.4);
+      border-radius: 28px;
+      padding: 24px 28px;
+      font-size: clamp(1.2rem, 2vw, 1.95rem);
       font-weight: 700;
       word-break: break-all;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+    }
+    .code {
+      position: relative;
+      z-index: 1;
+      background: rgba(255,251,248,.96);
+      color: var(--text);
+      border-radius: 28px;
+      padding: 30px;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.94rem;
+      line-height: 1.72;
+      border: 1px solid rgba(255,255,255,.18);
     }
     .footer-note {
       text-align: center;
       color: var(--muted);
-      margin-top: 24px;
-      font-size: .95rem;
+      margin-top: 18px;
+      font-size: .94rem;
     }
-    @media (max-width: 900px) {
-      .slide { padding: 34px 24px; min-height: auto; }
-      .grid-2, .grid-3, .grid-4, .two-col, .steps { grid-template-columns: 1fr; }
-      .deck { width: calc(100vw - 20px); margin: 12px auto 50px; }
+    .slide-mark {
+      position: absolute;
+      right: 30px;
+      bottom: 24px;
+      color: rgba(120,102,101,.55);
+      font-size: 0.86rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .brand-footer {
+      margin-top: 34px;
+      text-align: center;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid, .two-col, .grid-2, .grid-3, .grid-4, .grid-5, .steps { grid-template-columns: 1fr; }
+      .hero, .slide { padding: 30px 22px; }
+      .site-shell { width: calc(100vw - 16px); margin: 12px auto 50px; }
+      .site-topbar { border-radius: 26px; padding: 12px 14px; flex-wrap: wrap; }
+      .brand-note { white-space: normal; }
     }
   </style>
 </head>
 <body>
-  <div class="deck">
-    <div class="hero">
-      <h1>codexXgithubXwebsite</h1>
-      <p>公開網頁建置教學簡報，Canva 與 GitHub Pages 入門視覺版</p>
+  <div class="site-shell">
+    <div class="site-topbar">
+      <div class="brand-mini">
+        <div>
+          <div class="brand-pill">Rich Cherie</div>
+          <div class="brand-name">─── 𝓡𝓲𝓬𝓱 𝓒𝓱𝓮𝓻𝓲𝓮 ───</div>
+        </div>
+        <div class="brand-note">高級感藕粉品牌版，公開網頁建置教學簡報</div>
+      </div>
+      <a class="top-link" href="#slides-start">進入簡報</a>
+    </div>
+
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="banner-line">─── 𝓡𝓲𝓬𝓱 𝓒𝓱𝓮𝓻𝓲𝓮 ───</div>
+          <h1>從零開始<br/>建立公開網頁</h1>
+          <p class="hero-subtitle">這不是一般教學頁，而是依照 Cherie 專屬調性整理的品牌版簡報，用柔霧奶油白、高級藕粉、深咖啡灰，做出有質感的 GitHub Pages 入門視覺稿。</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#slides-start">開始閱讀簡報</a>
+            <a class="btn ghost" href="https://github.com/cherie0080/codexxgithubxwebsite" target="_blank" rel="noreferrer">查看 GitHub Repo</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h3>Brand Mood</h3>
+          <p>高級感、乾淨、輕奢、帶藕粉色溫柔質地，不走廉價網課感，而是 Cherie 專屬的精品教學頁調性。</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-title-wrap" id="slides-start">
+      <div>
+        <div class="section-kicker">Slide Deck</div>
+        <h2>Rich Cherie 專屬品牌版本</h2>
+      </div>
+      <p class="section-desc">以下 21 頁內容保留教學結構，但視覺與語氣已改成更符合妳品牌的高級版。</p>
     </div>
 
     <section class="slide">
-      <div class="blob a"></div><div class="blob b"></div>
-      <div class="eyebrow">Slide 01</div>
-      <h2>從零開始建立公開網頁</h2>
-      <p class="lead">用 GitHub Pages 做出自己的第一個公開網址，零基礎也能完成。</p>
-      <div class="tag">高級感奶油白 × 藕粉色系</div>
+      <div class="meta">Slide 01</div>
+      <h1 class="headline">從零開始建立公開網頁</h1>
+      <p class="lead">用 GitHub Pages 做出自己的第一個公開網址，也把妳的知識、品牌、作品，包成一頁就有質感的公開呈現。</p>
+      <div class="quote-box">這一頁不只是教學封面，而是 Cherie 品牌感的起始畫面。溫柔、精緻、留白、有記憶點。</div>
+      <div class="slide-mark">Rich Cherie</div>
     </section>
 
     <section class="slide alt">
-      <div class="eyebrow">Slide 02</div>
-      <h2>這堂課你會學到什麼？</h2>
+      <div class="meta">Slide 02</div>
+      <h1 class="headline">這堂課你會學到什麼？</h1>
       <div class="grid-2">
-        <div class="card"><h3>了解 GitHub</h3><p>知道 GitHub 是什麼，以及它為什麼適合新手做第一個公開網站。</p></div>
-        <div class="card"><h3>了解 Repository</h3><p>理解 repo 就是你的網站專案資料夾。</p></div>
-        <div class="card"><h3>建立 HTML 首頁</h3><p>學會做出最基本的 index.html。</p></div>
-        <div class="card"><h3>取得公開網址</h3><p>把檔案發布成別人也能打開的網頁。</p></div>
+        <div class="card accent"><div class="tag">Know the system</div><h3>了解 GitHub</h3><p>知道 GitHub 是什麼，為什麼它很適合新手打造第一個公開網站。</p></div>
+        <div class="card"><div class="tag">Project base</div><h3>了解 Repository</h3><p>理解 repo 就是你的網站專案資料夾，也是之後管理內容的核心基地。</p></div>
+        <div class="card"><div class="tag">First page</div><h3>建立 HTML 首頁</h3><p>學會做出最基本的 index.html，讓自己的內容真的有入口頁。</p></div>
+        <div class="card accent"><div class="tag">Launch</div><h3>取得公開網址</h3><p>把檔案發布成任何人都能打開的公開頁面，完成從 0 到有。</p></div>
       </div>
+      <div class="slide-mark">02</div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">Slide 03</div>
+      <div class="meta">Slide 03</div>
       <div class="two-col">
         <div>
-          <h2>完成後，你會擁有什麼？</h2>
-          <p class="lead">從帳號、首頁到公開網址，你會完成第一個可上線的網站基礎。</p>
+          <h1 class="headline">完成後，你會擁有什麼？</h1>
+          <p class="lead">不只是學會概念，而是真的完成一個能上線、能分享、能繼續擴充的品牌級起點。</p>
         </div>
         <div class="grid-2">
-          <div class="card pink"><h3>GitHub 帳號</h3></div>
-          <div class="card"><h3>Public repo</h3></div>
-          <div class="card"><h3>index.html</h3></div>
-          <div class="card pink"><h3>公開網址</h3></div>
+          <div class="card accent"><h3>GitHub 帳號</h3><p>品牌的數位基地之一。</p></div>
+          <div class="card"><h3>Public repo</h3><p>專案內容可以有系統管理。</p></div>
+          <div class="card"><h3>index.html</h3><p>第一個真正可打開的入口頁。</p></div>
+          <div class="card accent"><h3>公開網址</h3><p>妳可以直接分享的成果頁。</p></div>
         </div>
       </div>
+      <div class="slide-mark">03</div>
     </section>
 
     <section class="slide alt">
-      <div class="eyebrow">Slide 04</div>
-      <h2>這堂課適合哪些人？</h2>
+      <div class="meta">Slide 04</div>
+      <h1 class="headline">這堂課適合哪些人？</h1>
       <div class="grid-2">
-        <div class="card"><ul class="bullet"><li>完全沒碰過 GitHub 的人</li><li>不會寫程式的初學者</li><li>想先做出公開網頁的人</li></ul></div>
-        <div class="card"><ul class="bullet"><li>想建立個人品牌頁的人</li><li>想做作品集或活動頁的人</li><li>想理解網站上線流程的人</li></ul></div>
+        <div class="card"><ul class="bullet"><li>完全沒碰過 GitHub 的人</li><li>不會寫程式，但想有一個公開網站的人</li><li>想先建立作品或品牌入口頁的人</li></ul></div>
+        <div class="card accent"><ul class="bullet"><li>想做課程頁、活動頁、晨報頁的人</li><li>想把內容做成可分享網址的人</li><li>想先打通網站上線基本流程的人</li></ul></div>
       </div>
+      <div class="slide-mark">04</div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">Slide 05</div>
-      <h2>先認識 3 個核心概念</h2>
+      <div class="meta">Slide 05</div>
+      <h1 class="headline">先認識 3 個核心概念</h1>
       <div class="grid-3">
-        <div class="card"><div class="tag">GitHub</div><p>放程式、檔案與專案的平台。</p></div>
-        <div class="card pink"><div class="tag">Repository</div><p>可以理解成一個專案資料夾。</p></div>
-        <div class="card"><div class="tag">GitHub Pages</div><p>把 repo 內容變成公開網站的免費功能。</p></div>
+        <div class="card"><div class="tag">GitHub</div><p>放程式、檔案與專案的平台，也可以是妳網站發布的起點。</p></div>
+        <div class="card accent"><div class="tag">Repository</div><p>可以理解成一個專案資料夾，網站素材、頁面、版本都放在這裡。</p></div>
+        <div class="card"><div class="tag">GitHub Pages</div><p>把 repo 內容變成公開網站的免費功能，讓靜態頁面能直接上線。</p></div>
       </div>
+      <div class="slide-mark">05</div>
     </section>
 
     <section class="slide alt">
-      <div class="eyebrow">Slide 06</div>
-      <h2>從零到公開網頁，只要 5 步</h2>
+      <div class="meta">Slide 06</div>
+      <h1 class="headline">從零到公開網頁，只要 5 步</h1>
       <div class="steps">
-        <div class="step">1<br/>註冊 GitHub</div>
-        <div class="step">2<br/>建立 repo</div>
-        <div class="step">3<br/>建立 index.html</div>
-        <div class="step">4<br/>上傳檔案</div>
-        <div class="step">5<br/>開啟 Pages</div>
+        <div class="step">1<span>註冊 GitHub</span></div>
+        <div class="step">2<span>建立 repo</span></div>
+        <div class="step">3<span>建立 index.html</span></div>
+        <div class="step">4<span>上傳檔案</span></div>
+        <div class="step">5<span>開啟 Pages</span></div>
       </div>
+      <p class="footer-note">流程不複雜，重點是每一步都要對。</p>
+      <div class="slide-mark">06</div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">Slide 07</div>
+      <div class="meta">Slide 07</div>
       <div class="two-col">
         <div>
-          <h2>Step 1，先註冊 GitHub 帳號</h2>
+          <h1 class="headline">Step 1，先註冊 GitHub 帳號</h1>
           <ul class="checklist">
             <li>打開 github.com</li>
             <li>點 Sign up</li>
             <li>輸入 Email、密碼、帳號名稱</li>
             <li>完成驗證並登入</li>
           </ul>
-          <div class="card pink"><strong>提醒：</strong>帳號名稱之後會出現在公開網址裡。</div>
+          <div class="card accent"><strong>提醒：</strong>帳號名稱之後會出現在公開網址裡，所以名稱最好簡潔、好辨識、有品牌感。</div>
         </div>
-        <div class="mock"><h3>GitHub 註冊畫面</h3><p class="muted">這裡可放實際註冊畫面截圖。</p></div>
+        <div class="mock">
+          <h3>GitHub 註冊畫面</h3>
+          <p class="muted">這裡可以放實際註冊頁面截圖，作為教學投影片示意圖。</p>
+        </div>
       </div>
+      <div class="slide-mark">07</div>
     </section>
 
     <section class="slide alt">
-      <div class="eyebrow">Slide 08</div>
-      <h2>Step 2，建立一個公開的 Repository</h2>
+      <div class="meta">Slide 08</div>
+      <h1 class="headline">Step 2，建立一個公開的 Repository</h1>
       <div class="grid-4">
-        <div class="card"><div class="tag">1</div><p>登入 GitHub</p></div>
-        <div class="card"><div class="tag">2</div><p>點右上角 +</p></div>
-        <div class="card"><div class="tag">3</div><p>選 New repository</p></div>
-        <div class="card"><div class="tag">4</div><p>輸入名稱並選 Public</p></div>
+        <div class="card"><div class="number-badge">1</div><p>登入 GitHub</p></div>
+        <div class="card accent"><div class="number-badge">2</div><p>點右上角 +</p></div>
+        <div class="card"><div class="number-badge">3</div><p>選 New repository</p></div>
+        <div class="card accent"><div class="number-badge">4</div><p>輸入名稱並選 Public</p></div>
       </div>
+      <div class="slide-mark">08</div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">Slide 09</div>
+      <div class="meta">Slide 09</div>
       <div class="two-col">
         <div>
-          <h2>Step 3，建立首頁檔案</h2>
-          <p class="lead">首頁通常叫 <strong>index.html</strong>，系統會把它當作網站首頁。</p>
-          <p class="muted">檔名一定要正確，不要存成 index.html.txt。</p>
+          <h1 class="headline">Step 3，建立首頁檔案</h1>
+          <p class="lead">首頁通常叫 <strong>index.html</strong>，系統會把它自動視為網站首頁。這個命名非常關鍵。</p>
+          <p class="small">妳不是在做一個零散文件，而是在做一個真正可被打開的入口頁。</p>
         </div>
-        <div class="card pink" style="text-align:center; padding: 46px 24px;"><h2 style="margin:0;">index.html</h2></div>
+        <div class="card accent" style="text-align:center; padding: 50px 24px;">
+          <div class="tag">首頁檔名</div>
+          <h1 class="headline" style="font-size:2.6rem; margin:0;">index.html</h1>
+          <p class="small" style="margin-top:8px;">不要存成 index.html.txt</p>
+        </div>
       </div>
+      <div class="slide-mark">09</div>
     </section>
 
     <section class="slide dark">
-      <div class="eyebrow">Slide 10</div>
-      <h2>最基本的 HTML 首頁範例</h2>
+      <div class="meta">Slide 10</div>
+      <h1 class="headline">最基本的 HTML 首頁範例</h1>
       <div class="code">&lt;!DOCTYPE html&gt;
 &lt;html lang="zh-Hant"&gt;
 &lt;head&gt;
@@ -301,13 +600,14 @@
   &lt;p&gt;如果你看到這一頁，代表網站建置成功。&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;</div>
+      <div class="slide-mark">10</div>
     </section>
 
     <section class="slide alt">
-      <div class="eyebrow">Slide 11</div>
+      <div class="meta">Slide 11</div>
       <div class="two-col">
         <div>
-          <h2>Step 4，把首頁上傳到 GitHub</h2>
+          <h1 class="headline">Step 4，把首頁上傳到 GitHub</h1>
           <ul class="checklist">
             <li>打開你的 repo</li>
             <li>點 Add file</li>
@@ -318,82 +618,89 @@
         </div>
         <div class="grid-2">
           <div class="card"><p>Add file</p></div>
-          <div class="card"><p>Upload files</p></div>
+          <div class="card accent"><p>Upload files</p></div>
           <div class="card"><p>拖入 index.html</p></div>
-          <div class="card"><p>Commit changes</p></div>
+          <div class="card accent"><p>Commit changes</p></div>
         </div>
       </div>
+      <div class="slide-mark">11</div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">Slide 12</div>
-      <h2>Step 5，把 repo 變成公開網站</h2>
+      <div class="meta">Slide 12</div>
+      <h1 class="headline">Step 5，把 repo 變成公開網站</h1>
       <div class="grid-4">
         <div class="card"><p>打開 Settings</p></div>
-        <div class="card pink"><p>找到 Pages</p></div>
+        <div class="card accent"><p>找到 Pages</p></div>
         <div class="card"><p>選 Deploy from a branch</p></div>
-        <div class="card pink"><p>選 main / root</p></div>
+        <div class="card accent"><p>選 main / root</p></div>
       </div>
-      <div class="card" style="margin-top:24px;"><strong>重點：</strong>沒開 GitHub Pages，就不會有公開網址。</div>
+      <div class="card" style="margin-top:22px;"><strong>關鍵提醒：</strong>沒開 GitHub Pages，頁面不會變成公開網址。設定正確後，才算真的上線。</div>
+      <div class="slide-mark">12</div>
     </section>
 
     <section class="slide alt">
-      <div class="eyebrow">Slide 13</div>
-      <h2>公開網址會長什麼樣？</h2>
+      <div class="meta">Slide 13</div>
+      <h1 class="headline">公開網址會長什麼樣？</h1>
       <div class="url-box">https://你的帳號.github.io/你的repo名稱/</div>
-      <p class="footer-note">例如：https://cherie0080.github.io/codexXgithubXwebsite/</p>
+      <p class="footer-note">例如：https://cherie0080.github.io/codexxgithubxwebsite/</p>
+      <div class="slide-mark">13</div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">Slide 14</div>
-      <h2>如果成功，你會看到什麼？</h2>
+      <div class="meta">Slide 14</div>
+      <h1 class="headline">如果成功，你會看到什麼？</h1>
       <div class="mock">
         <h3>歡迎來到我的公開網頁</h3>
         <p class="muted">如果你看到這一頁，代表網站建置成功。</p>
       </div>
       <div class="grid-3" style="margin-top:22px;">
         <div class="card"><p>你自己的首頁</p></div>
-        <div class="card pink"><p>一個公開網址</p></div>
+        <div class="card accent"><p>一個公開網址</p></div>
         <div class="card"><p>一個正式上線的頁面</p></div>
       </div>
+      <div class="slide-mark">14</div>
     </section>
 
     <section class="slide alt">
-      <div class="eyebrow">Slide 15</div>
-      <h2>常見錯誤與排查</h2>
+      <div class="meta">Slide 15</div>
+      <h1 class="headline">常見錯誤與排查</h1>
       <div class="grid-2">
-        <div class="card pink"><h3>常見錯誤</h3><ul><li>檔名不是 index.html</li><li>存成 .txt</li><li>repo 沒設 Public</li><li>Pages 沒開</li></ul></div>
-        <div class="card"><h3>正確排查</h3><ul><li>確認首頁檔名</li><li>確認 repo 可公開</li><li>確認 Pages 設定</li><li>等待幾分鐘再測試</li></ul></div>
+        <div class="card accent"><h3>常見錯誤</h3><ul><li>檔名不是 index.html</li><li>不小心存成 .txt</li><li>repo 沒有設成 Public</li><li>Pages 沒有開啟</li></ul></div>
+        <div class="card"><h3>正確排查</h3><ul><li>確認首頁檔名</li><li>確認 repo 可公開</li><li>確認 Pages 設定</li><li>等待部署完成再測試</li></ul></div>
       </div>
+      <div class="slide-mark">15</div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">Slide 16</div>
-      <h2>網站建立後，之後怎麼更新？</h2>
+      <div class="meta">Slide 16</div>
+      <h1 class="headline">網站建立後，之後怎麼更新？</h1>
       <div class="grid-3">
         <div class="card"><h3>1</h3><p>修改 index.html</p></div>
-        <div class="card pink"><h3>2</h3><p>重新上傳或直接編輯</p></div>
-        <div class="card"><h3>3</h3><p>GitHub Pages 自動更新</p></div>
+        <div class="card accent"><h3>2</h3><p>重新上傳或直接編輯內容</p></div>
+        <div class="card"><h3>3</h3><p>GitHub Pages 自動重新發布</p></div>
       </div>
+      <div class="slide-mark">16</div>
     </section>
 
     <section class="slide alt">
-      <div class="eyebrow">Slide 17</div>
-      <h2>這套方法可以延伸做什麼？</h2>
+      <div class="meta">Slide 17</div>
+      <h1 class="headline">這套方法可以延伸做什麼？</h1>
       <div class="grid-3">
         <div class="card"><p>個人品牌頁</p></div>
-        <div class="card"><p>個人名片頁</p></div>
+        <div class="card accent"><p>個人名片頁</p></div>
         <div class="card"><p>作品集頁</p></div>
-        <div class="card"><p>活動頁</p></div>
+        <div class="card accent"><p>活動頁</p></div>
         <div class="card"><p>課程頁</p></div>
-        <div class="card"><p>晨報頁</p></div>
+        <div class="card accent"><p>晨報頁</p></div>
       </div>
+      <div class="slide-mark">17</div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">Slide 18</div>
-      <h2>今天的實作任務</h2>
-      <div class="card pink" style="text-align:center; font-size:1.2rem;">請完成一個可公開打開的網站首頁</div>
+      <div class="meta">Slide 18</div>
+      <h1 class="headline">今天的實作任務</h1>
+      <div class="quote-box">請完成一個可公開打開的網站首頁，並確保它真的可以被分享與閱讀。</div>
       <ul class="checklist" style="margin-top:18px;">
         <li>建立 GitHub 帳號</li>
         <li>建立 Public repo</li>
@@ -401,31 +708,37 @@
         <li>啟用 GitHub Pages</li>
         <li>成功打開網址</li>
       </ul>
+      <div class="slide-mark">18</div>
     </section>
 
     <section class="slide alt">
-      <div class="eyebrow">Slide 19</div>
-      <h2>課後作業</h2>
+      <div class="meta">Slide 19</div>
+      <h1 class="headline">課後作業</h1>
       <div class="grid-4">
         <div class="card"><p>加上你的名字</p></div>
-        <div class="card"><p>加上一句自我介紹</p></div>
+        <div class="card accent"><p>加上一句自我介紹</p></div>
         <div class="card"><p>加上一張圖片</p></div>
-        <div class="card"><p>加上一個超連結</p></div>
+        <div class="card accent"><p>加上一個超連結</p></div>
       </div>
+      <div class="slide-mark">19</div>
     </section>
 
     <section class="slide dark">
-      <div class="eyebrow">Slide 20</div>
-      <h2>一句話總結</h2>
+      <div class="meta">Slide 20</div>
+      <h1 class="headline">一句話總結</h1>
       <p class="lead">做一個 <strong>index.html</strong>，放進 <strong>GitHub repo</strong>，開啟 <strong>GitHub Pages</strong>，你就能擁有自己的公開網站。</p>
+      <div class="slide-mark">20</div>
     </section>
 
     <section class="slide">
-      <div class="blob a"></div>
-      <div class="eyebrow">Slide 21</div>
-      <h2>恭喜，你已經完成第一個公開網頁</h2>
-      <p class="lead">接下來，你可以把它升級成品牌頁、作品集頁，或任何你想公開展示的內容。</p>
+      <div class="meta">Slide 21</div>
+      <h1 class="headline">恭喜，你已經完成第一個公開網頁</h1>
+      <p class="lead">接下來，你可以把它升級成品牌頁、作品集頁，或任何你想公開展示的內容。真正重要的不是技術多難，而是妳終於把內容變成一個可以被看見的作品。</p>
+      <div class="quote-box">這份頁面現在已經是 Cherie 品牌調性的教學版底稿，之後還可以再延伸成課程頁、講義頁、社群導流頁，甚至是公開品牌站入口。</div>
+      <div class="slide-mark">21</div>
     </section>
+
+    <div class="brand-footer">© Rich Cherie · codexXgithubXwebsite · Cherie 品牌版簡報底稿</div>
   </div>
 </body>
 </html>
