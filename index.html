@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>codexXgithubXwebsite | 公開網頁建置教學簡報</title>
+  <style>
+    :root {
+      --bg: #f8f4ef;
+      --bg-alt: #e9dfd2;
+      --pink: #d8b7b3;
+      --rose: #c89c9a;
+      --text: #4b403d;
+      --muted: #7a6b67;
+      --white: #fffdfb;
+      --shadow: 0 18px 40px rgba(75, 64, 61, 0.08);
+      --radius: 28px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "PingFang TC", sans-serif;
+      background: linear-gradient(180deg, var(--bg), #f4ede6);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .deck {
+      width: min(1200px, calc(100vw - 48px));
+      margin: 32px auto 80px;
+    }
+    .hero {
+      text-align: center;
+      padding: 48px 24px 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 4vw, 4.4rem);
+      margin: 0;
+      letter-spacing: 0.04em;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-top: 12px;
+    }
+    .slide {
+      min-height: 86vh;
+      background: rgba(255, 253, 251, 0.82);
+      border: 1px solid rgba(200, 156, 154, 0.18);
+      border-radius: 36px;
+      box-shadow: var(--shadow);
+      margin: 28px 0;
+      padding: 54px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .slide.alt { background: linear-gradient(135deg, rgba(233,223,210,.95), rgba(248,244,239,.95)); }
+    .slide.dark {
+      background: linear-gradient(135deg, #4b403d, #655652);
+      color: var(--white);
+    }
+    .slide.dark .eyebrow,
+    .slide.dark .muted,
+    .slide.dark .step,
+    .slide.dark .small { color: rgba(255,253,251,.8); }
+    .blob {
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(216, 183, 179, 0.32);
+      filter: blur(2px);
+    }
+    .blob.a { width: 260px; height: 260px; right: -70px; top: -70px; }
+    .blob.b { width: 220px; height: 220px; left: -80px; bottom: -80px; background: rgba(200,156,154,.18); }
+    .eyebrow {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    h2 {
+      font-size: clamp(2rem, 3vw, 3rem);
+      margin: 0 0 18px;
+      line-height: 1.2;
+    }
+    h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+    .muted, .small { color: var(--muted); }
+    .lead { font-size: 1.2rem; max-width: 860px; }
+    .grid-2, .grid-3, .grid-4 {
+      display: grid;
+      gap: 18px;
+    }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+    .card {
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(200,156,154,.18);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      box-shadow: 0 10px 24px rgba(75,64,61,.05);
+    }
+    .card.pink { background: rgba(216,183,179,.22); }
+    .tag {
+      display: inline-block;
+      background: rgba(216,183,179,.38);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0,1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .step {
+      background: rgba(216,183,179,.35);
+      border-radius: 26px;
+      padding: 18px;
+      text-align: center;
+      font-weight: 700;
+    }
+    .code {
+      background: rgba(255,253,251,.94);
+      color: var(--text);
+      padding: 28px;
+      border-radius: 28px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre-wrap;
+      font-size: 0.96rem;
+      overflow-x: auto;
+    }
+    .checklist li, .bullet li { margin: 8px 0; }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 28px;
+      align-items: center;
+    }
+    .mock {
+      border: 2px dashed rgba(200,156,154,.7);
+      border-radius: 28px;
+      padding: 24px;
+      background: rgba(255,255,255,.58);
+      min-height: 280px;
+    }
+    .url-box {
+      background: rgba(255,255,255,.8);
+      border: 1.5px solid rgba(200,156,154,.45);
+      border-radius: 24px;
+      padding: 22px 26px;
+      font-size: clamp(1.2rem, 2vw, 1.8rem);
+      font-weight: 700;
+      word-break: break-all;
+    }
+    .footer-note {
+      text-align: center;
+      color: var(--muted);
+      margin-top: 24px;
+      font-size: .95rem;
+    }
+    @media (max-width: 900px) {
+      .slide { padding: 34px 24px; min-height: auto; }
+      .grid-2, .grid-3, .grid-4, .two-col, .steps { grid-template-columns: 1fr; }
+      .deck { width: calc(100vw - 20px); margin: 12px auto 50px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <div class="hero">
+      <h1>codexXgithubXwebsite</h1>
+      <p>公開網頁建置教學簡報，Canva 與 GitHub Pages 入門視覺版</p>
+    </div>
+
+    <section class="slide">
+      <div class="blob a"></div><div class="blob b"></div>
+      <div class="eyebrow">Slide 01</div>
+      <h2>從零開始建立公開網頁</h2>
+      <p class="lead">用 GitHub Pages 做出自己的第一個公開網址，零基礎也能完成。</p>
+      <div class="tag">高級感奶油白 × 藕粉色系</div>
+    </section>
+
+    <section class="slide alt">
+      <div class="eyebrow">Slide 02</div>
+      <h2>這堂課你會學到什麼？</h2>
+      <div class="grid-2">
+        <div class="card"><h3>了解 GitHub</h3><p>知道 GitHub 是什麼，以及它為什麼適合新手做第一個公開網站。</p></div>
+        <div class="card"><h3>了解 Repository</h3><p>理解 repo 就是你的網站專案資料夾。</p></div>
+        <div class="card"><h3>建立 HTML 首頁</h3><p>學會做出最基本的 index.html。</p></div>
+        <div class="card"><h3>取得公開網址</h3><p>把檔案發布成別人也能打開的網頁。</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">Slide 03</div>
+      <div class="two-col">
+        <div>
+          <h2>完成後，你會擁有什麼？</h2>
+          <p class="lead">從帳號、首頁到公開網址，你會完成第一個可上線的網站基礎。</p>
+        </div>
+        <div class="grid-2">
+          <div class="card pink"><h3>GitHub 帳號</h3></div>
+          <div class="card"><h3>Public repo</h3></div>
+          <div class="card"><h3>index.html</h3></div>
+          <div class="card pink"><h3>公開網址</h3></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide alt">
+      <div class="eyebrow">Slide 04</div>
+      <h2>這堂課適合哪些人？</h2>
+      <div class="grid-2">
+        <div class="card"><ul class="bullet"><li>完全沒碰過 GitHub 的人</li><li>不會寫程式的初學者</li><li>想先做出公開網頁的人</li></ul></div>
+        <div class="card"><ul class="bullet"><li>想建立個人品牌頁的人</li><li>想做作品集或活動頁的人</li><li>想理解網站上線流程的人</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">Slide 05</div>
+      <h2>先認識 3 個核心概念</h2>
+      <div class="grid-3">
+        <div class="card"><div class="tag">GitHub</div><p>放程式、檔案與專案的平台。</p></div>
+        <div class="card pink"><div class="tag">Repository</div><p>可以理解成一個專案資料夾。</p></div>
+        <div class="card"><div class="tag">GitHub Pages</div><p>把 repo 內容變成公開網站的免費功能。</p></div>
+      </div>
+    </section>
+
+    <section class="slide alt">
+      <div class="eyebrow">Slide 06</div>
+      <h2>從零到公開網頁，只要 5 步</h2>
+      <div class="steps">
+        <div class="step">1<br/>註冊 GitHub</div>
+        <div class="step">2<br/>建立 repo</div>
+        <div class="step">3<br/>建立 index.html</div>
+        <div class="step">4<br/>上傳檔案</div>
+        <div class="step">5<br/>開啟 Pages</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">Slide 07</div>
+      <div class="two-col">
+        <div>
+          <h2>Step 1，先註冊 GitHub 帳號</h2>
+          <ul class="checklist">
+            <li>打開 github.com</li>
+            <li>點 Sign up</li>
+            <li>輸入 Email、密碼、帳號名稱</li>
+            <li>完成驗證並登入</li>
+          </ul>
+          <div class="card pink"><strong>提醒：</strong>帳號名稱之後會出現在公開網址裡。</div>
+        </div>
+        <div class="mock"><h3>GitHub 註冊畫面</h3><p class="muted">這裡可放實際註冊畫面截圖。</p></div>
+      </div>
+    </section>
+
+    <section class="slide alt">
+      <div class="eyebrow">Slide 08</div>
+      <h2>Step 2，建立一個公開的 Repository</h2>
+      <div class="grid-4">
+        <div class="card"><div class="tag">1</div><p>登入 GitHub</p></div>
+        <div class="card"><div class="tag">2</div><p>點右上角 +</p></div>
+        <div class="card"><div class="tag">3</div><p>選 New repository</p></div>
+        <div class="card"><div class="tag">4</div><p>輸入名稱並選 Public</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">Slide 09</div>
+      <div class="two-col">
+        <div>
+          <h2>Step 3，建立首頁檔案</h2>
+          <p class="lead">首頁通常叫 <strong>index.html</strong>，系統會把它當作網站首頁。</p>
+          <p class="muted">檔名一定要正確，不要存成 index.html.txt。</p>
+        </div>
+        <div class="card pink" style="text-align:center; padding: 46px 24px;"><h2 style="margin:0;">index.html</h2></div>
+      </div>
+    </section>
+
+    <section class="slide dark">
+      <div class="eyebrow">Slide 10</div>
+      <h2>最基本的 HTML 首頁範例</h2>
+      <div class="code">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-Hant"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;我的第一個公開網頁&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;歡迎來到我的公開網頁&lt;/h1&gt;
+  &lt;p&gt;如果你看到這一頁，代表網站建置成功。&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+    </section>
+
+    <section class="slide alt">
+      <div class="eyebrow">Slide 11</div>
+      <div class="two-col">
+        <div>
+          <h2>Step 4，把首頁上傳到 GitHub</h2>
+          <ul class="checklist">
+            <li>打開你的 repo</li>
+            <li>點 Add file</li>
+            <li>選 Upload files</li>
+            <li>上傳 index.html</li>
+            <li>點 Commit changes</li>
+          </ul>
+        </div>
+        <div class="grid-2">
+          <div class="card"><p>Add file</p></div>
+          <div class="card"><p>Upload files</p></div>
+          <div class="card"><p>拖入 index.html</p></div>
+          <div class="card"><p>Commit changes</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">Slide 12</div>
+      <h2>Step 5，把 repo 變成公開網站</h2>
+      <div class="grid-4">
+        <div class="card"><p>打開 Settings</p></div>
+        <div class="card pink"><p>找到 Pages</p></div>
+        <div class="card"><p>選 Deploy from a branch</p></div>
+        <div class="card pink"><p>選 main / root</p></div>
+      </div>
+      <div class="card" style="margin-top:24px;"><strong>重點：</strong>沒開 GitHub Pages，就不會有公開網址。</div>
+    </section>
+
+    <section class="slide alt">
+      <div class="eyebrow">Slide 13</div>
+      <h2>公開網址會長什麼樣？</h2>
+      <div class="url-box">https://你的帳號.github.io/你的repo名稱/</div>
+      <p class="footer-note">例如：https://cherie0080.github.io/codexXgithubXwebsite/</p>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">Slide 14</div>
+      <h2>如果成功，你會看到什麼？</h2>
+      <div class="mock">
+        <h3>歡迎來到我的公開網頁</h3>
+        <p class="muted">如果你看到這一頁，代表網站建置成功。</p>
+      </div>
+      <div class="grid-3" style="margin-top:22px;">
+        <div class="card"><p>你自己的首頁</p></div>
+        <div class="card pink"><p>一個公開網址</p></div>
+        <div class="card"><p>一個正式上線的頁面</p></div>
+      </div>
+    </section>
+
+    <section class="slide alt">
+      <div class="eyebrow">Slide 15</div>
+      <h2>常見錯誤與排查</h2>
+      <div class="grid-2">
+        <div class="card pink"><h3>常見錯誤</h3><ul><li>檔名不是 index.html</li><li>存成 .txt</li><li>repo 沒設 Public</li><li>Pages 沒開</li></ul></div>
+        <div class="card"><h3>正確排查</h3><ul><li>確認首頁檔名</li><li>確認 repo 可公開</li><li>確認 Pages 設定</li><li>等待幾分鐘再測試</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">Slide 16</div>
+      <h2>網站建立後，之後怎麼更新？</h2>
+      <div class="grid-3">
+        <div class="card"><h3>1</h3><p>修改 index.html</p></div>
+        <div class="card pink"><h3>2</h3><p>重新上傳或直接編輯</p></div>
+        <div class="card"><h3>3</h3><p>GitHub Pages 自動更新</p></div>
+      </div>
+    </section>
+
+    <section class="slide alt">
+      <div class="eyebrow">Slide 17</div>
+      <h2>這套方法可以延伸做什麼？</h2>
+      <div class="grid-3">
+        <div class="card"><p>個人品牌頁</p></div>
+        <div class="card"><p>個人名片頁</p></div>
+        <div class="card"><p>作品集頁</p></div>
+        <div class="card"><p>活動頁</p></div>
+        <div class="card"><p>課程頁</p></div>
+        <div class="card"><p>晨報頁</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">Slide 18</div>
+      <h2>今天的實作任務</h2>
+      <div class="card pink" style="text-align:center; font-size:1.2rem;">請完成一個可公開打開的網站首頁</div>
+      <ul class="checklist" style="margin-top:18px;">
+        <li>建立 GitHub 帳號</li>
+        <li>建立 Public repo</li>
+        <li>建立 index.html</li>
+        <li>啟用 GitHub Pages</li>
+        <li>成功打開網址</li>
+      </ul>
+    </section>
+
+    <section class="slide alt">
+      <div class="eyebrow">Slide 19</div>
+      <h2>課後作業</h2>
+      <div class="grid-4">
+        <div class="card"><p>加上你的名字</p></div>
+        <div class="card"><p>加上一句自我介紹</p></div>
+        <div class="card"><p>加上一張圖片</p></div>
+        <div class="card"><p>加上一個超連結</p></div>
+      </div>
+    </section>
+
+    <section class="slide dark">
+      <div class="eyebrow">Slide 20</div>
+      <h2>一句話總結</h2>
+      <p class="lead">做一個 <strong>index.html</strong>，放進 <strong>GitHub repo</strong>，開啟 <strong>GitHub Pages</strong>，你就能擁有自己的公開網站。</p>
+    </section>
+
+    <section class="slide">
+      <div class="blob a"></div>
+      <div class="eyebrow">Slide 21</div>
+      <h2>恭喜，你已經完成第一個公開網頁</h2>
+      <p class="lead">接下來，你可以把它升級成品牌頁、作品集頁，或任何你想公開展示的內容。</p>
+    </section>
+  </div>
+</body>
+</html>
