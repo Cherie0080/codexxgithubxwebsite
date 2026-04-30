@@ -88,6 +88,16 @@
       transition: .2s ease;
     }
     .top-link:hover { background: rgba(216,183,179,.16); }
+    a.inline-link {
+      color: var(--pink-deep);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(198,148,149,.42);
+      transition: .2s ease;
+    }
+    a.inline-link:hover {
+      color: var(--text);
+      border-bottom-color: rgba(67,55,53,.35);
+    }
 
     .hero {
       position: relative;
@@ -492,8 +502,8 @@
           <p class="lead">不只是學會概念，而是真的完成一個能上線、能分享、能繼續擴充的品牌級起點。</p>
         </div>
         <div class="grid-2">
-          <div class="card accent"><h3>GitHub 帳號</h3><p>品牌的數位基地之一。</p></div>
-          <div class="card"><h3>Public repo</h3><p>專案內容可以有系統管理。</p></div>
+          <div class="card accent"><h3><a class="inline-link" href="https://github.com/signup" target="_blank" rel="noreferrer">GitHub 帳號</a></h3><p>品牌的數位基地之一。</p></div>
+          <div class="card"><h3><a class="inline-link" href="https://github.com/new" target="_blank" rel="noreferrer">Public repo</a></h3><p>專案內容可以有系統管理。</p></div>
           <div class="card"><h3>index.html</h3><p>第一個真正可打開的入口頁。</p></div>
           <div class="card accent"><h3>公開網址</h3><p>妳可以直接分享的成果頁。</p></div>
         </div>
@@ -515,9 +525,9 @@
       <div class="meta">Slide 05</div>
       <h1 class="headline">先認識 3 個核心概念</h1>
       <div class="grid-3">
-        <div class="card"><div class="tag">GitHub</div><p>放程式、檔案與專案的平台，也可以是妳網站發布的起點。</p></div>
+        <div class="card"><div class="tag"><a class="inline-link" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a></div><p>放程式、檔案與專案的平台，也可以是妳網站發布的起點。</p></div>
         <div class="card accent"><div class="tag">Repository</div><p>可以理解成一個專案資料夾，網站素材、頁面、版本都放在這裡。</p></div>
-        <div class="card"><div class="tag">GitHub Pages</div><p>把 repo 內容變成公開網站的免費功能，讓靜態頁面能直接上線。</p></div>
+        <div class="card"><div class="tag"><a class="inline-link" href="https://pages.github.com/" target="_blank" rel="noreferrer">GitHub Pages</a></div><p>把 repo 內容變成公開網站的免費功能，讓靜態頁面能直接上線。</p></div>
       </div>
       <div class="slide-mark">05</div>
     </section>
@@ -542,12 +552,12 @@
         <div>
           <h1 class="headline">Step 1，先註冊 GitHub 帳號</h1>
           <ul class="checklist">
-            <li>打開 github.com</li>
+            <li>打開 <a class="inline-link" href="https://github.com/" target="_blank" rel="noreferrer">github.com</a></li>
             <li>點 Sign up</li>
             <li>輸入 Email、密碼、帳號名稱</li>
             <li>完成驗證並登入</li>
           </ul>
-          <div class="card accent"><strong>提醒：</strong>帳號名稱之後會出現在公開網址裡，所以名稱最好簡潔、好辨識、有品牌感。</div>
+          <div class="card accent"><strong>提醒：</strong>帳號名稱之後會出現在公開網址裡，所以名稱最好簡潔、好辨識、有品牌感。可以直接從 <a class="inline-link" href="https://github.com/signup" target="_blank" rel="noreferrer">註冊頁</a> 開始。</div>
         </div>
         <div class="mock">
           <h3>GitHub 註冊畫面</h3>
@@ -561,9 +571,9 @@
       <div class="meta">Slide 08</div>
       <h1 class="headline">Step 2，建立一個公開的 Repository</h1>
       <div class="grid-4">
-        <div class="card"><div class="number-badge">1</div><p>登入 GitHub</p></div>
+        <div class="card"><div class="number-badge">1</div><p><a class="inline-link" href="https://github.com/login" target="_blank" rel="noreferrer">登入 GitHub</a></p></div>
         <div class="card accent"><div class="number-badge">2</div><p>點右上角 +</p></div>
-        <div class="card"><div class="number-badge">3</div><p>選 New repository</p></div>
+        <div class="card"><div class="number-badge">3</div><p><a class="inline-link" href="https://github.com/new" target="_blank" rel="noreferrer">選 New repository</a></p></div>
         <div class="card accent"><div class="number-badge">4</div><p>輸入名稱並選 Public</p></div>
       </div>
       <div class="slide-mark">08</div>
@@ -701,7 +711,7 @@
     <section class="slide">
       <div class="meta">Slide 18</div>
       <h1 class="headline">今天的實作任務</h1>
-      <div class="quote-box">請完成一個可公開打開的網站首頁，並確保它真的可以被分享與閱讀。</div>
+      <div class="quote-box">請完成一個可公開打開的網站首頁，並確保它真的可以被分享與閱讀。若要快速開始，可以直接開 <a class="inline-link" href="https://github.com/new" target="_blank" rel="noreferrer">GitHub 建 repo 頁面</a>。</div>
       <ul class="checklist" style="margin-top:18px;">
         <li>建立 GitHub 帳號</li>
         <li>建立 Public repo</li>
@@ -727,7 +737,7 @@
     <section class="slide dark">
       <div class="meta">Slide 20</div>
       <h1 class="headline">一句話總結</h1>
-      <p class="lead">做一個 <strong>index.html</strong>，放進 <strong>GitHub repo</strong>，開啟 <strong>GitHub Pages</strong>，你就能擁有自己的公開網站。</p>
+      <p class="lead">做一個 <strong>index.html</strong>，放進 <strong><a class="inline-link" href="https://github.com/new" target="_blank" rel="noreferrer">GitHub repo</a></strong>，開啟 <strong><a class="inline-link" href="https://pages.github.com/" target="_blank" rel="noreferrer">GitHub Pages</a></strong>，你就能擁有自己的公開網站。</p>
       <div class="slide-mark">20</div>
     </section>
 
@@ -739,7 +749,7 @@
       <div class="slide-mark">21</div>
     </section>
 
-    <div class="brand-footer">© Rich Cherie · codexXgithubXwebsite · Cherie 品牌版簡報底稿</div>
+    <div class="brand-footer">© Rich Cherie · <a class="inline-link" href="https://cherie0080.github.io/codexxgithubxwebsite/" target="_blank" rel="noreferrer">codexXgithubXwebsite</a> · Cherie 品牌版簡報底稿</div>
   </div>
 </body>
 </html>
