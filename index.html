@@ -21,6 +21,7 @@
       --radius-xl: 34px;
       --radius-lg: 24px;
       --radius-sm: 16px;
+      --brand-script: "Times New Roman", "Georgia", serif;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -67,7 +68,7 @@
       white-space: nowrap;
     }
     .brand-name {
-      font-family: "Times New Roman", serif;
+      font-family: var(--brand-script);
       font-size: 1.1rem;
       letter-spacing: 0.08em;
       white-space: nowrap;
@@ -127,14 +128,14 @@
       align-items: center;
     }
     .banner-line {
-      font-family: "Times New Roman", serif;
+      font-family: var(--brand-script);
       letter-spacing: 0.18em;
       color: var(--gold);
       margin-bottom: 18px;
       font-size: 0.92rem;
     }
     .hero h1 {
-      font-family: "Times New Roman", serif;
+      font-family: var(--brand-script);
       font-size: clamp(2.6rem, 5vw, 5rem);
       line-height: 1.04;
       margin: 0;
@@ -206,7 +207,7 @@
     }
     h2 {
       margin: 0;
-      font-family: "Times New Roman", serif;
+      font-family: var(--brand-script);
       font-size: clamp(1.8rem, 3vw, 3rem);
       line-height: 1.12;
       letter-spacing: 0.03em;
@@ -274,7 +275,7 @@
       position: relative;
       z-index: 1;
       margin: 0 0 16px;
-      font-family: "Times New Roman", serif;
+      font-family: var(--brand-script);
       font-size: clamp(2rem, 3vw, 3.25rem);
       line-height: 1.15;
       letter-spacing: 0.03em;
@@ -419,6 +420,46 @@
       letter-spacing: .16em;
       text-transform: uppercase;
     }
+    .brand-card {
+      background: linear-gradient(145deg, rgba(255,252,249,.94), rgba(243,231,226,.90));
+      border: 1px solid rgba(198,148,149,.18);
+      border-radius: 30px;
+      padding: 28px 30px;
+      box-shadow: 0 18px 40px rgba(67,55,53,.06);
+    }
+    .brand-card h3 {
+      margin: 0 0 10px;
+      font-family: var(--brand-script);
+      font-size: 2rem;
+      letter-spacing: 0.05em;
+    }
+    .brand-card p {
+      margin: 6px 0;
+      color: var(--muted);
+    }
+    .brand-card a {
+      color: var(--pink-deep);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(198,148,149,.35);
+    }
+    .price-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+    .offer-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.74), rgba(255,248,245,.60));
+      border: 1px solid rgba(198,148,149,.18);
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: 0 18px 32px rgba(67,55,53,.05);
+    }
+    .offer-card strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
     .brand-footer {
       margin-top: 34px;
       text-align: center;
@@ -445,7 +486,11 @@
         </div>
         <div class="brand-note">女王品牌課程頁 × 精品感簡報版本</div>
       </div>
-      <a class="top-link" href="#slides-start">進入簡報</a>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <a class="top-link" href="#slides-start">進入簡報</a>
+        <a class="top-link" href="#quick-nav">快速導覽</a>
+        <a class="top-link" href="#cta-zone">重點連結</a>
+      </div>
     </div>
 
     <section class="hero">
@@ -453,15 +498,59 @@
         <div>
           <div class="banner-line">─── 𝓡𝓲𝓬𝓱 𝓒𝓱𝓮𝓻𝓲𝓮 ───</div>
           <h1>從零開始<br/>建立公開網頁</h1>
-          <p class="hero-subtitle">這不是一般教學頁，而是依照 Cherie 專屬調性重做的女王型品牌課程頁。用柔霧奶油白、高級藕粉、深咖啡灰與精品留白，把 GitHub Pages 入門變成一份有氣場的品牌視覺作品。</p>
+          <p class="hero-subtitle">這不是一般教學頁，而是依照 Cherie 專屬調性重做的女王型高價課程銷售頁。用柔霧奶油白、高級藕粉、深咖啡灰與精品留白，把 GitHub Pages 入門包裝成一份有主理人氣場的品牌作品。</p>
           <div class="hero-actions">
             <a class="btn primary" href="#slides-start">開始閱讀簡報</a>
             <a class="btn ghost" href="https://github.com/cherie0080/codexxgithubxwebsite" target="_blank" rel="noreferrer">查看 GitHub Repo</a>
           </div>
         </div>
-        <div class="hero-card">
-          <h3>Queen Brand Mood</h3>
+        <div class="brand-card">
+          <div class="banner-line" style="margin-bottom:10px;">─── 𝓡𝓲𝓬𝓱 𝓒𝓱𝓮𝓻𝓲𝓮 ───</div>
+          <h3>鑫彤女王 𝔛𝔦𝔫𝔱𝔬𝔫𝔤 𝔔𝔲𝔢𝔢𝔫</h3>
+          <p>房產投資／理財實戰／美業領航</p>
+          <p><a href="https://www.instagram.com/estilista.wedding_/" target="_blank" rel="noreferrer">Instagram：@estilista.wedding_</a></p>
           <p>高級感、女王感、柔霧藕粉與精品留白並行。不是一般教學頁，而是帶有品牌銷售感、精品包裝感與主理人氣場的優雅課程視覺。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide alt" id="quick-nav" style="min-height:auto; padding:30px 34px; margin-top:24px;">
+      <div class="meta">Quick Navigation</div>
+      <h1 class="headline" style="font-size:2rem;">快速導覽</h1>
+      <div class="grid-4">
+        <a class="btn ghost" href="#slide-1">封面</a>
+        <a class="btn ghost" href="#slide-7">註冊 GitHub</a>
+        <a class="btn ghost" href="#slide-12">開啟 Pages</a>
+        <a class="btn ghost" href="#slide-20">一句話總結</a>
+      </div>
+      <div class="grid-3" style="margin-top:12px;">
+        <a class="btn ghost" href="#slide-2">課程目標</a>
+        <a class="btn ghost" href="#slide-8">建立 Repo</a>
+        <a class="btn ghost" href="#slide-18">實作任務</a>
+      </div>
+    </section>
+
+    <section class="slide" id="cta-zone" style="min-height:auto; padding:34px 36px;">
+      <div class="meta">Direct Action Links</div>
+      <h1 class="headline" style="font-size:2rem;">重點連結區</h1>
+      <div class="hero-actions">
+        <a class="btn primary" href="https://github.com/signup" target="_blank" rel="noreferrer">直接註冊 GitHub</a>
+        <a class="btn primary" href="https://github.com/new" target="_blank" rel="noreferrer">直接建立 Repo</a>
+        <a class="btn ghost" href="https://pages.github.com/" target="_blank" rel="noreferrer">查看 GitHub Pages</a>
+        <a class="btn ghost" href="https://cherie0080.github.io/codexxgithubxwebsite/" target="_blank" rel="noreferrer">打開這份公開頁</a>
+      </div>
+      <div class="price-cards">
+        <div class="offer-card">
+          <strong>精品感視覺</strong>
+          不是一般簡報模板，而是帶有女王品牌氣場的高級頁面包裝。
+        </div>
+        <div class="offer-card">
+          <strong>課程銷售感</strong>
+          讓內容不只可讀，還有被看見、被記住、被轉發的品牌感。
+        </div>
+        <div class="offer-card">
+          <strong>公開網址成果</strong>
+          從教學到上線，最後真的落成一個可直接對外展示的頁面。
         </div>
       </div>
     </section>
