@@ -468,6 +468,28 @@
       color: var(--muted);
       font-size: .92rem;
     }
+    .slide-visual {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: min(100%, 360px);
+      max-height: none;
+      object-fit: contain;
+      border-radius: 16px;
+      box-shadow: 0 12px 22px rgba(67,55,53,.08);
+    }
+    .visual-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 8px;
+      width: fit-content;
+      max-width: 100%;
+    }
+    .visual-note-layout {
+      align-items: start;
+      grid-template-columns: minmax(280px, max-content) minmax(320px, 0.75fr) !important;
+    }
 
     @media (max-width: 980px) {
       .hero-grid, .two-col, .grid-2, .grid-3, .grid-4, .grid-5, .steps { grid-template-columns: 1fr; }
@@ -564,9 +586,9 @@
     </div>
 
     <section class="slide" id="visual-slide-1" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
-        <div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-01.jpg" alt="第 1 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      <div class="two-col visual-note-layout">
+        <div class="visual-wrap">
+        <img src="assets/slides/slide-01.jpg" alt="第 1 張圖文講義" class="slide-visual" />
       </div><div>
         <div class="meta">Visual Slide 01</div>
         <h1 class="headline" style="font-size:2rem;">從零開始建立公開網頁</h1>
@@ -576,21 +598,21 @@
     </section>
 
     <section class="slide" id="visual-slide-2" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
+      <div class="two-col visual-note-layout">
         <div>
         <div class="meta">Visual Slide 02</div>
         <h1 class="headline" style="font-size:2rem;">這堂課你會學到什麼？</h1>
         <div class="quote-box"><strong>補充說明：</strong>這一頁是全局導覽，先讓讀者知道這堂內容最後會帶到哪些成果，避免一開始就陷進細節而失去方向。</div>
-      </div><div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-02.jpg" alt="第 2 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      </div><div class="visual-wrap">
+        <img src="assets/slides/slide-02.jpg" alt="第 2 張圖文講義" class="slide-visual" />
       </div>
       </div>
     </section>
 
     <section class="slide" id="visual-slide-3" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
-        <div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-03.jpg" alt="第 3 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      <div class="two-col visual-note-layout">
+        <div class="visual-wrap">
+        <img src="assets/slides/slide-03.jpg" alt="第 3 張圖文講義" class="slide-visual" />
       </div><div>
         <div class="meta">Visual Slide 03</div>
         <h1 class="headline" style="font-size:2rem;">完成後，你會擁有什麼？</h1>
@@ -600,21 +622,21 @@
     </section>
 
     <section class="slide" id="visual-slide-4" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
+      <div class="two-col visual-note-layout">
         <div>
         <div class="meta">Visual Slide 04</div>
         <h1 class="headline" style="font-size:2rem;">這堂課適合哪些人？</h1>
         <div class="quote-box"><strong>補充說明：</strong>這一頁在幫內容找到受眾，讓讀者快速判斷這是不是適合自己的主題，也能降低新手對技術門檻的焦慮。</div>
-      </div><div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-04.jpg" alt="第 4 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      </div><div class="visual-wrap">
+        <img src="assets/slides/slide-04.jpg" alt="第 4 張圖文講義" class="slide-visual" />
       </div>
       </div>
     </section>
 
     <section class="slide" id="visual-slide-5" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
-        <div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-05.jpg" alt="第 5 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      <div class="two-col visual-note-layout">
+        <div class="visual-wrap">
+        <img src="assets/slides/slide-05.jpg" alt="第 5 張圖文講義" class="slide-visual" />
       </div><div>
         <div class="meta">Visual Slide 05</div>
         <h1 class="headline" style="font-size:2rem;">先認識 3 個核心概念</h1>
@@ -624,21 +646,21 @@
     </section>
 
     <section class="slide" id="visual-slide-6" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
+      <div class="two-col visual-note-layout">
         <div>
         <div class="meta">Visual Slide 06</div>
         <h1 class="headline" style="font-size:2rem;">從零到公開網頁，只要 5 步</h1>
         <div class="quote-box"><strong>補充說明：</strong>這一頁像地圖，讓讀者先知道整體只分成五步，閱讀時會更有節奏，也比較不容易覺得複雜。</div>
-      </div><div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-06.jpg" alt="第 6 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      </div><div class="visual-wrap">
+        <img src="assets/slides/slide-06.jpg" alt="第 6 張圖文講義" class="slide-visual" />
       </div>
       </div>
     </section>
 
     <section class="slide" id="visual-slide-7" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
-        <div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-07.jpg" alt="第 7 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      <div class="two-col visual-note-layout">
+        <div class="visual-wrap">
+        <img src="assets/slides/slide-07.jpg" alt="第 7 張圖文講義" class="slide-visual" />
       </div><div>
         <div class="meta">Visual Slide 07</div>
         <h1 class="headline" style="font-size:2rem;">Step 1｜先註冊 GitHub 帳號</h1>
@@ -648,21 +670,21 @@
     </section>
 
     <section class="slide" id="visual-slide-8" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
+      <div class="two-col visual-note-layout">
         <div>
         <div class="meta">Visual Slide 08</div>
         <h1 class="headline" style="font-size:2rem;">Step 2｜建立一個公開的 Repository</h1>
         <div class="quote-box"><strong>補充說明：</strong>建立 repo 的本質，就是幫你的網站找一個固定的家，後續所有頁面、圖片與更新都會圍繞這裡管理。</div>
-      </div><div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-08.jpg" alt="第 8 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      </div><div class="visual-wrap">
+        <img src="assets/slides/slide-08.jpg" alt="第 8 張圖文講義" class="slide-visual" />
       </div>
       </div>
     </section>
 
     <section class="slide" id="visual-slide-9" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
-        <div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-09.jpg" alt="第 9 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      <div class="two-col visual-note-layout">
+        <div class="visual-wrap">
+        <img src="assets/slides/slide-09.jpg" alt="第 9 張圖文講義" class="slide-visual" />
       </div><div>
         <div class="meta">Visual Slide 09</div>
         <h1 class="headline" style="font-size:2rem;">Step 3｜建立首頁檔案</h1>
@@ -672,21 +694,21 @@
     </section>
 
     <section class="slide" id="visual-slide-10" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
+      <div class="two-col visual-note-layout">
         <div>
         <div class="meta">Visual Slide 10</div>
         <h1 class="headline" style="font-size:2rem;">最基本的 HTML 首頁範例</h1>
         <div class="quote-box"><strong>補充說明：</strong>這裡的程式碼範例不是要人背下來，而是讓人知道，一個可以上線的網頁，其實可以先從非常簡單的骨架開始。</div>
-      </div><div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-10.jpg" alt="第 10 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      </div><div class="visual-wrap">
+        <img src="assets/slides/slide-10.jpg" alt="第 10 張圖文講義" class="slide-visual" />
       </div>
       </div>
     </section>
 
     <section class="slide" id="visual-slide-11" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
-        <div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-11.jpg" alt="第 11 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      <div class="two-col visual-note-layout">
+        <div class="visual-wrap">
+        <img src="assets/slides/slide-11.jpg" alt="第 11 張圖文講義" class="slide-visual" />
       </div><div>
         <div class="meta">Visual Slide 11</div>
         <h1 class="headline" style="font-size:2rem;">Step 4｜把首頁上傳到 GitHub</h1>
@@ -696,21 +718,21 @@
     </section>
 
     <section class="slide" id="visual-slide-12" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
+      <div class="two-col visual-note-layout">
         <div>
         <div class="meta">Visual Slide 12</div>
         <h1 class="headline" style="font-size:2rem;">Step 5｜把 repo 變成公開網站</h1>
         <div class="quote-box"><strong>補充說明：</strong>真正讓網站公開的不是把檔案上傳而已，而是要把 GitHub Pages 正確打開，這是上線的關鍵開關。</div>
-      </div><div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-12.jpg" alt="第 12 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      </div><div class="visual-wrap">
+        <img src="assets/slides/slide-12.jpg" alt="第 12 張圖文講義" class="slide-visual" />
       </div>
       </div>
     </section>
 
     <section class="slide" id="visual-slide-13" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
-        <div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-13.jpg" alt="第 13 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      <div class="two-col visual-note-layout">
+        <div class="visual-wrap">
+        <img src="assets/slides/slide-13.jpg" alt="第 13 張圖文講義" class="slide-visual" />
       </div><div>
         <div class="meta">Visual Slide 13</div>
         <h1 class="headline" style="font-size:2rem;">公開網址會長什麼樣？</h1>
@@ -720,21 +742,21 @@
     </section>
 
     <section class="slide" id="visual-slide-14" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
+      <div class="two-col visual-note-layout">
         <div>
         <div class="meta">Visual Slide 14</div>
         <h1 class="headline" style="font-size:2rem;">如果成功，你會看到什麼？</h1>
         <div class="quote-box"><strong>補充說明：</strong>這頁是在幫讀者確認成功狀態。只要打開網址看得到內容，就代表整個公開流程已經打通。</div>
-      </div><div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-14.jpg" alt="第 14 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      </div><div class="visual-wrap">
+        <img src="assets/slides/slide-14.jpg" alt="第 14 張圖文講義" class="slide-visual" />
       </div>
       </div>
     </section>
 
     <section class="slide" id="visual-slide-15" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
-        <div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-15.jpg" alt="第 15 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      <div class="two-col visual-note-layout">
+        <div class="visual-wrap">
+        <img src="assets/slides/slide-15.jpg" alt="第 15 張圖文講義" class="slide-visual" />
       </div><div>
         <div class="meta">Visual Slide 15</div>
         <h1 class="headline" style="font-size:2rem;">常見錯誤與排查</h1>
@@ -744,21 +766,21 @@
     </section>
 
     <section class="slide" id="visual-slide-16" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
+      <div class="two-col visual-note-layout">
         <div>
         <div class="meta">Visual Slide 16</div>
         <h1 class="headline" style="font-size:2rem;">網站建立後，之後怎麼更新？</h1>
         <div class="quote-box"><strong>補充說明：</strong>網站建立之後，最重要的是知道它可以持續更新。這一頁在提醒讀者，網站不是一次性成果，而是可以養成的資產。</div>
-      </div><div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-16.jpg" alt="第 16 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      </div><div class="visual-wrap">
+        <img src="assets/slides/slide-16.jpg" alt="第 16 張圖文講義" class="slide-visual" />
       </div>
       </div>
     </section>
 
     <section class="slide" id="visual-slide-17" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
-        <div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-17.jpg" alt="第 17 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      <div class="two-col visual-note-layout">
+        <div class="visual-wrap">
+        <img src="assets/slides/slide-17.jpg" alt="第 17 張圖文講義" class="slide-visual" />
       </div><div>
         <div class="meta">Visual Slide 17</div>
         <h1 class="headline" style="font-size:2rem;">這套方法可以延伸做什麼？</h1>
@@ -768,21 +790,21 @@
     </section>
 
     <section class="slide" id="visual-slide-18" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
+      <div class="two-col visual-note-layout">
         <div>
         <div class="meta">Visual Slide 18</div>
         <h1 class="headline" style="font-size:2rem;">今天的實作任務</h1>
         <div class="quote-box"><strong>補充說明：</strong>這一頁的任務清單，是把前面所有概念收斂成可執行動作，讓讀者有明確的完成標準。</div>
-      </div><div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-18.jpg" alt="第 18 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      </div><div class="visual-wrap">
+        <img src="assets/slides/slide-18.jpg" alt="第 18 張圖文講義" class="slide-visual" />
       </div>
       </div>
     </section>
 
     <section class="slide" id="visual-slide-19" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
-        <div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-19.jpg" alt="第 19 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      <div class="two-col visual-note-layout">
+        <div class="visual-wrap">
+        <img src="assets/slides/slide-19.jpg" alt="第 19 張圖文講義" class="slide-visual" />
       </div><div>
         <div class="meta">Visual Slide 19</div>
         <h1 class="headline" style="font-size:2rem;">課後作業</h1>
@@ -792,21 +814,21 @@
     </section>
 
     <section class="slide" id="visual-slide-20" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
+      <div class="two-col visual-note-layout">
         <div>
         <div class="meta">Visual Slide 20</div>
         <h1 class="headline" style="font-size:2rem;">一句話總結</h1>
         <div class="quote-box"><strong>補充說明：</strong>這句總結是把整套流程濃縮成一句話，讓人記住網站上線真正最核心的動作順序。</div>
-      </div><div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-20.jpg" alt="第 20 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      </div><div class="visual-wrap">
+        <img src="assets/slides/slide-20.jpg" alt="第 20 張圖文講義" class="slide-visual" />
       </div>
       </div>
     </section>
 
     <section class="slide" id="visual-slide-21" style="min-height:auto;">
-      <div class="two-col" style="align-items:start; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);">
-        <div style="display:flex; justify-content:center; align-items:flex-start; padding-top:8px;">
-        <img src="assets/slides/slide-21.jpg" alt="第 21 張圖文講義" style="max-width:100%; width:auto; height:auto; display:block; border-radius:16px; box-shadow:0 12px 22px rgba(67,55,53,.08);" />
+      <div class="two-col visual-note-layout">
+        <div class="visual-wrap">
+        <img src="assets/slides/slide-21.jpg" alt="第 21 張圖文講義" class="slide-visual" />
       </div><div>
         <div class="meta">Visual Slide 21</div>
         <h1 class="headline" style="font-size:2rem;">恭喜，你已經完成第一個公開網頁</h1>
