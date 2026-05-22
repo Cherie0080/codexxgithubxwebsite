@@ -47,11 +47,14 @@
     .tips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
     .publish-note{margin-top:12px;padding:12px 14px;border-radius:16px;background:#fff;border:1px dashed #dcc6a9;color:var(--sub);font-size:.95rem}
     .copy-hint{margin-top:10px;color:var(--green);font-weight:700;font-size:.95rem;min-height:1.4em}
-    .line-cta{margin-top:18px;background:linear-gradient(180deg,#fffaf2 0%,#f8f1e6 100%);border:1px solid #eadfce;border-radius:24px;padding:20px;text-align:center}
+    .line-cta{margin-top:18px;background:linear-gradient(135deg,#fffaf2 0%,#f7ecdd 100%);border:1px solid #eadfce;border-radius:28px;padding:24px;text-align:center;box-shadow:0 16px 32px rgba(111,70,34,.08)}
+    .line-kicker{display:inline-block;margin-bottom:10px;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid #e7d8c2;color:#9a6b3d;font-size:.82rem;font-weight:800;letter-spacing:.04em}
     .line-cta p{margin:0;color:var(--sub)}
-    .line-cta strong{display:block;color:var(--accent-dark);font-size:1.08rem;margin-bottom:8px}
-    .line-link{display:inline-block;margin-top:14px}
+    .line-cta strong{display:block;color:var(--accent-dark);font-size:1.12rem;margin-bottom:8px}
+    .line-sub{margin-top:8px;font-size:.98rem}
+    .line-link{display:inline-block;margin-top:16px}
     .line-link img{max-width:min(100%,420px);width:100%;height:auto;display:block;border-radius:20px;border:1px solid #e4d8c8;box-shadow:0 12px 24px rgba(111,70,34,.12)}
+    .line-button{display:inline-flex;align-items:center;justify-content:center;margin-top:16px;padding:14px 22px;border-radius:999px;background:linear-gradient(135deg,#8a5b2f 0%,#6f4622 100%);color:#fff;text-decoration:none;font-weight:800;box-shadow:0 12px 24px rgba(111,70,34,.16)}
     .footer{margin-top:20px;color:#8f857d;font-size:.9rem;text-align:center}
     @media (max-width:800px){.grid,.tips,.actions{grid-template-columns:1fr}h1{font-size:1.7rem}.wrap{padding:12px 10px 64px}.card,.result{padding:16px}.btn{padding:15px;font-size:1rem}}
   </style>
@@ -122,11 +125,13 @@
 
     <section class="section">
       <div class="line-cta">
-        <strong>有關貸款、房地產、財商理念相關問題</strong>
-        <p>歡迎加入「崇崇彤彤」的 Line@ 一起聊聊</p>
+        <div class="line-kicker">貸款 × 房地產 × 財商理念</div>
+        <strong>想更深入聊貸款與資產規劃？</strong>
+        <p class="line-sub">有關貸款、房地產、財商理念相關問題，歡迎加入「崇崇彤彤」的 Line@ 一起聊聊</p>
         <a class="line-link" href="https://lin.ee/5q1YrMh" target="_blank" rel="noopener noreferrer" aria-label="加入崇崇彤彤 Line@">
           <img src="assets/line/chongchongtongtong-line.jpg" alt="崇崇彤彤 Line@ 加入資訊" />
         </a>
+        <a class="line-button" href="https://lin.ee/5q1YrMh" target="_blank" rel="noopener noreferrer">立即加入 Line@</a>
       </div>
     </section>
 
