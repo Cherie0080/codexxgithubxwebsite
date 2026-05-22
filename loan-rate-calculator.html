@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>貸款年利率回推計算器｜Rich Cherie</title>
+  <meta name="description" content="輸入貸款本金、期數與每月本利攤還金額，即可快速回推出貸款月利率、年利率、總繳金額與總利息。" />
+  <meta property="og:title" content="貸款年利率回推計算器｜Rich Cherie" />
+  <meta property="og:description" content="快速回推貸款月利率、年利率、總繳金額與總利息，手機也能順手操作。" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#b58a55" />
+  <style>
+    :root{--bg:#f7f3ec;--paper:#fffaf4;--card:#fff;--text:#171513;--sub:#726a62;--gold:#b58a55;--line:#eadbca;--accent:#8a5b2f;--accent-dark:#6f4622;--soft:#f6eadc;--green:#2f7d4f}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;background:linear-gradient(180deg,#fdf9f3 0%,#f7f3ec 100%);color:var(--text);line-height:1.75}
+    .wrap{max-width:1080px;margin:0 auto;padding:16px 12px 72px}
+    .hero,.section{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:22px 18px}
+    .hero{box-shadow:0 16px 34px rgba(80,56,30,.08)}
+    .banner{display:block;text-align:center;padding:10px 14px;margin-bottom:12px;border-radius:999px;background:linear-gradient(135deg,#fff8ef 0%,#f2dfc7 100%);border:1px solid var(--line);color:#9a6b3d;font-weight:800;letter-spacing:.08em}
+    .brand{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:24px;padding:16px;margin-bottom:16px}
+    .brand-title{font-size:1.12rem;font-weight:800;margin-bottom:8px}
+    .brand-sub{color:var(--sub);margin-bottom:6px}
+    .ig-link{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:10px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--accent);font-weight:700;text-decoration:none}
+    .ig-icon{width:18px;height:18px}
+    .pill{display:inline-block;padding:7px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--gold);font-size:.83rem;font-weight:800;letter-spacing:.06em}
+    h1{font-size:2rem;line-height:1.2;margin:14px 0 10px}
+    h2{font-size:1.42rem;margin:0 0 12px}
+    .lead,.muted{color:var(--sub)}
+    .section{margin-top:18px}
+    .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:18px}
+    .tag{display:inline-block;margin-bottom:10px;background:#f2e2cf;color:#8a6135;padding:5px 11px;border-radius:999px;font-size:.8rem;font-weight:800}
+    .field{margin-bottom:14px}
+    .label{display:block;font-weight:700;margin-bottom:6px}
+    .input{width:100%;padding:12px 14px;border:1px solid #e4d8c8;border-radius:14px;background:#fff;font-size:1rem;color:var(--text)}
+    .input:focus{outline:none;border-color:#d3b38a;box-shadow:0 0 0 4px rgba(181,138,85,.12)}
+    .actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:8px}
+    .btn{width:100%;padding:14px;border:0;border-radius:16px;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-dark) 100%);color:#fff;font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 12px 24px rgba(111,70,34,.18)}
+    .btn:hover{filter:brightness(1.03)}
+    .btn-secondary{background:#fff;color:var(--accent);border:1px solid #dfc8ab;box-shadow:none}
+    .btn-ghost{background:#f7efe4;color:var(--accent-dark);box-shadow:none}
+    .result{min-height:220px;background:linear-gradient(180deg,#fffaf2 0%,#f8f1e6 100%);border:1px solid #eadfce;border-radius:22px;padding:18px}
+    .result-item{padding:12px 0;border-bottom:1px dashed #e6d7c4}
+    .result-item:last-child{border-bottom:0}
+    .result-label{color:var(--sub);font-size:.95rem}
+    .result-value{font-size:1.2rem;font-weight:800;color:var(--accent-dark)}
+    .tips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .publish-note{margin-top:12px;padding:12px 14px;border-radius:16px;background:#fff;border:1px dashed #dcc6a9;color:var(--sub);font-size:.95rem}
+    .copy-hint{margin-top:10px;color:var(--green);font-weight:700;font-size:.95rem;min-height:1.4em}
+    .footer{margin-top:20px;color:#8f857d;font-size:.9rem;text-align:center}
+    @media (max-width:800px){.grid,.tips,.actions{grid-template-columns:1fr}h1{font-size:1.7rem}.wrap{padding:12px 10px 64px}.card,.result{padding:16px}.btn{padding:15px;font-size:1rem}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="banner">─── 𝓡𝓲𝓬𝓱 𝓒𝓱𝓮𝓻𝓲𝓮 ───</div>
+      <div class="brand">
+        <div class="brand-title">鑫彤女王 𝔛𝔦𝔫𝔱𝔬𝔫𝔤 𝔔𝔲𝔢𝔢𝔫</div>
+        <div class="brand-sub">▫️ 房產投資 ▫️ 理財實戰 ▫️ 美業領航</div>
+        <a class="ig-link" href="https://www.instagram.com/cherie.estilista" target="_blank" rel="noopener noreferrer"><svg class="ig-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg>Instagram｜cherie.estilista</a>
+      </div>
+      <span class="pill">貸款工具</span>
+      <h1>貸款年利率回推計算器</h1>
+      <p class="lead">輸入貸款本金、貸款期數與每月本利攤還金額，就能快速回推出月利率、年利率、總繳金額與總利息。</p>
+      <div class="publish-note">這版已升級為可直接對外展示的發布版版型，保留品牌視覺，同時補上手機操作友善的按鈕配置。</div>
+    </section>
+
+    <section class="section">
+      <div class="grid">
+        <div class="card">
+          <div class="tag">輸入資料</div>
+          <div class="field">
+            <label class="label" for="principal">貸款本金（元）</label>
+            <input class="input" id="principal" type="number" value="1000000" min="0" />
+          </div>
+          <div class="field">
+            <label class="label" for="months">貸款期數（月）</label>
+            <input class="input" id="months" type="number" value="84" min="1" />
+          </div>
+          <div class="field">
+            <label class="label" for="payment">每月本利攤還金額（元）</label>
+            <input class="input" id="payment" type="number" value="20000" min="0" />
+          </div>
+          <div class="actions">
+            <button class="btn" onclick="calculateRate()">計算年利率</button>
+            <button class="btn btn-secondary" onclick="resetForm()">一鍵清空</button>
+            <button class="btn btn-ghost" onclick="copyResult()">複製結果</button>
+          </div>
+          <div class="copy-hint" id="copyHint"></div>
+        </div>
+
+        <div class="result" id="result">
+          <div class="tag">計算結果</div>
+          <div class="muted">按下「計算年利率」後，這裡會顯示回推結果。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>怎麼看這份結果？</h2>
+      <div class="tips">
+        <div class="card">
+          <div class="tag">月利率</div>
+          <div>先回推出每月實際利率，方便你比較不同貸款方案的真實成本。</div>
+        </div>
+        <div class="card">
+          <div class="tag">年利率</div>
+          <div>以月利率 × 12 估算年利率，適合快速判斷目前方案大概落在哪個利率區間。</div>
+        </div>
+        <div class="card">
+          <div class="tag">總成本</div>
+          <div>總繳金額與總利息可以直接看出，這筆貸款最後總共多付多少資金成本。</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">Rich Cherie｜貸款工具頁｜發布版</div>
+  </main>
+
+  <script>
+    function formatMoney(num) {
+      return Math.round(num).toLocaleString('zh-TW');
+    }
+
+    function setHint(message = '') {
+      document.getElementById('copyHint').textContent = message;
+    }
+
+    function resetForm() {
+      document.getElementById('principal').value = '';
+      document.getElementById('months').value = '';
+      document.getElementById('payment').value = '';
+      document.getElementById('result').innerHTML = '<div class="tag">計算結果</div><div class="muted">已清空資料，重新輸入後再計算即可。</div>';
+      setHint('已清空輸入資料');
+    }
+
+    async function copyResult() {
+      const result = document.getElementById('result');
+      const text = result.innerText.trim();
+      if (!text || text.includes('按下「計算年利率」後')) {
+        setHint('請先完成計算，再複製結果');
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(text);
+        setHint('結果已複製，可以直接貼給對方');
+      } catch (error) {
+        setHint('複製失敗，請改用手動複製');
+      }
+    }
+
+    function calculateRate() {
+      const principal = Number(document.getElementById('principal').value);
+      const months = Number(document.getElementById('months').value);
+      const payment = Number(document.getElementById('payment').value);
+      const result = document.getElementById('result');
+
+      if (!principal || !months || !payment || principal <= 0 || months <= 0 || payment <= 0) {
+        result.innerHTML = '<div class="tag">計算結果</div><div class="muted">請先輸入正確的本金、期數與每月還款金額。</div>';
+        setHint('');
+        return;
+      }
+
+      if (payment * months < principal) {
+        result.innerHTML = '<div class="tag">計算結果</div><div class="muted">目前輸入的每月還款總額小於本金，無法回推出有效利率，請重新確認資料。</div>';
+        setHint('');
+        return;
+      }
+
+      let monthlyRate = 0;
+
+      if (Math.abs(payment * months - principal) < 1e-7) {
+        monthlyRate = 0;
+      } else {
+        let low = 0;
+        let high = 1;
+
+        for (let i = 0; i < 100; i++) {
+          monthlyRate = (low + high) / 2;
+          const estimatedPrincipal = payment * (1 - Math.pow(1 + monthlyRate, -months)) / monthlyRate;
+          if (estimatedPrincipal > principal) low = monthlyRate;
+          else high = monthlyRate;
+        }
+      }
+
+      const annualRate = monthlyRate * 12;
+      const totalPayment = payment * months;
+      const totalInterest = totalPayment - principal;
+
+      result.innerHTML = `
+        <div class="tag">計算結果</div>
+        <div class="result-item">
+          <div class="result-label">月利率</div>
+          <div class="result-value">約 ${(monthlyRate * 100).toFixed(4)}%</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">年利率</div>
+          <div class="result-value">約 ${(annualRate * 100).toFixed(2)}%</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">總繳金額</div>
+          <div class="result-value">約 ${formatMoney(totalPayment)} 元</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">總利息</div>
+          <div class="result-value">約 ${formatMoney(totalInterest)} 元</div>
+        </div>
+      `;
+      setHint('');
+    }
+  </script>
+</body>
+</html>
