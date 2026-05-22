@@ -218,6 +218,50 @@
       max-width: 560px;
       font-size: 1rem;
     }
+    .tool-feature {
+      margin-top: 24px;
+      background: linear-gradient(140deg, rgba(255,252,249,.96), rgba(243,231,226,.88));
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .tool-feature-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 20px;
+      align-items: center;
+    }
+    .tool-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .tool-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(198, 148, 149, 0.22);
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+    .tool-card {
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(198, 148, 149, 0.2);
+      border-radius: 24px;
+      padding: 24px;
+    }
+    .tool-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+      color: var(--pink-deep);
+      letter-spacing: .06em;
+    }
+    .tool-card p { margin: 0; color: var(--muted); }
 
     .slide {
       position: relative;
@@ -492,8 +536,8 @@
     }
 
     @media (max-width: 980px) {
-      .hero-grid, .two-col, .grid-2, .grid-3, .grid-4, .grid-5, .steps { grid-template-columns: 1fr; }
-      .hero, .slide { padding: 30px 22px; }
+      .hero-grid, .tool-feature-grid, .two-col, .grid-2, .grid-3, .grid-4, .grid-5, .steps { grid-template-columns: 1fr; }
+      .hero, .slide, .tool-feature { padding: 30px 22px; }
       .site-shell { width: calc(100vw - 16px); margin: 12px auto 50px; }
       .site-topbar { border-radius: 26px; padding: 12px 14px; flex-wrap: wrap; }
       .brand-note { white-space: normal; }
@@ -532,6 +576,28 @@
           <h3>鑫彤女王Cherie</h3>
           <p><a href="https://www.instagram.com/cherie.estilista/" target="_blank" rel="noreferrer">鑫彤Cherie｜@cherie.estilista</a></p>
           <p><a href="https://www.instagram.com/estilista.wedding_/" target="_blank" rel="noreferrer">艾絲緹造型團隊｜@estilista.wedding_</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-feature" id="loan-tool-entry">
+      <div class="tool-feature-grid">
+        <div>
+          <div class="section-kicker" style="margin-bottom:8px;">Featured Tool</div>
+          <h2 style="font-size:2.2rem;">貸款年利率回推計算器</h2>
+          <p class="section-desc" style="max-width:640px; margin-top:12px;">輸入本金、期數、每月本利攤還金額，就能快速回推出月利率、年利率、總繳金額與總利息，適合直接拿來比較不同貸款方案。</p>
+          <div class="tool-badges">
+            <span class="tool-badge">品牌發布版</span>
+            <span class="tool-badge">手機版友善</span>
+            <span class="tool-badge">支援一鍵清空 / 複製結果</span>
+          </div>
+          <div class="hero-actions" style="margin-top:20px;">
+            <a class="btn primary" href="https://cherie0080.github.io/codexxgithubxwebsite/loan-rate-calculator/" target="_blank" rel="noreferrer">直接打開工具</a>
+          </div>
+        </div>
+        <div class="tool-card">
+          <h3>這頁可以直接拿去用</h3>
+          <p>現在已經有固定網址，可以直接開給客戶、朋友，或放到你的其他公開頁面當工具入口。</p>
         </div>
       </div>
     </section>
